@@ -20,3 +20,6 @@ const validate = (req, res, next) => {
 };
 
 module.exports = { registrationValidation, loginValidation, validate };
+
+
+

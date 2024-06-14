@@ -8,3 +8,5 @@ router.post('/register', registrationValidation, validate, registerUser);
 router.post('/login', loginValidation, validate, loginUser);
 
 module.exports = router;
+
+
