@@ -1,18 +1,17 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-}
-
 model User {
   id       Int       @id @default(autoincrement())
-  username String    @unique 
+  username String    @unique
   email    String    @unique
   password String
   orders   Order[]
@@ -26,7 +25,7 @@ model Product {
   image  String
   orders Order[]
   userId Int?
-  user   User?   @relation(fields: [userId], references: [id])
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model Order {
