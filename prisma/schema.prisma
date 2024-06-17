@@ -1,37 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+model Product {
+  id       Int      @id @default(autoincrement())
+  title    String
+  price    Float
+  image    String
+  orders   Order[]  // Lägg till denna rad för relationen till Order
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  username String    @unique
-  email    String    @unique
-  password String
-  orders   Order[]   // En användare kan ha flera order
-  products Product[] // En användare kan ha flera produkter (relation är förmodligen via userId i Product-modellen)
-}
-
-model Product {
-  id     Int     @id @default(autoincrement())
-  title  String
-  price  Float
-  image  String
-  orders Order[]   // En produkt kan ha flera order
-  userId Int?     // En produkt kan vara associerad med en användare
-  user   User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  email    String   @unique
+  orders   Order[]  // Lägg till denna rad för relationen till Order
+  // Lägg till andra fält du behöver
 }
 
 model Order {
-  id         Int     @id @default(autoincrement())
-  productId  Int
-  quantity   Int
-  totalPrice Float
-  userId     Int
-  product    Product @relation(fields: [productId], references: [id])
-  user       User    @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
 }
