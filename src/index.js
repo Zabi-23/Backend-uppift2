@@ -6,6 +6,8 @@ const productRoutes = require('./routes/product-routes');
 const userRoutes = require('./routes/user-routes');
 const errorHandler = require('./middleware/errorHandler');
 const authMiddleware = require('./middleware/authMiddleware');
+const productSeeder = require('./scripts/productSeeder');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,5 +25,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-require('./productSeeder');
+
 
