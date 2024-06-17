@@ -4,13 +4,12 @@ const { registrationValidation, loginValidation, validate } = require('../middle
 
 const router = express.Router();
 
-router.get('/', getUsers);
-router.get('/:id', getUser);
+router.get('/', getUsers); // Route for fetching all users
+router.get('/:id', getUser); // Route for fetching a specific user
 router.post('/', registrationValidation, validate, createUser);
 router.put('/:id', registrationValidation, validate, updateUser);
 router.delete('/:id', deleteUser);
 
-router.post('/register', registrationValidation, validate, createUser);
-router.post('/login', loginValidation, validate, require('../controllers/user-controllers').loginUser);
-
 module.exports = router;
+
+
