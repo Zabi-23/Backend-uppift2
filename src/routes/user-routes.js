@@ -4,8 +4,8 @@ const { registrationValidation, loginValidation, validate } = require('../middle
 
 const router = express.Router();
 
-router.get('/', getUsers); // Route for fetching all users
-router.get('/:id', getUser); // Route for fetching a specific user
+router.get('/', getUsers); 
+router.get('/:id', getUser); 
 router.post('/', registrationValidation, validate, createUser);
 router.put('/:id', registrationValidation, validate, updateUser);
 router.delete('/:id', deleteUser);
